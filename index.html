@@ -3,50 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lena – Kleingewerbe</title>
+  <title>Vorname Nachname – Kleingewerbe</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --sand:    #F0EBE1;
-      --stone:   #C8BFB0;
-      --bark:    #6B5744;
-      --moss:    #5A6650;
-      --ink:     #2E2A25;
-      --cream:   #FAF7F3;
+      --stone: #f5f2ec;
+      --stone-dark: #e8e3d8;
+      --bark: #3d3428;
+      --bark-light: #6b5e4a;
+      --moss: #4a6741;
+      --moss-light: #6a8f60;
+      --sand: #c8b99a;
+      --white: #fdfcf9;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      font-size: 1rem;
+      font-weight: 400;
+      background: var(--stone);
+      color: var(--bark);
+      font-size: 16px;
       line-height: 1.7;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2.5rem;
-      background: rgba(250, 247, 243, 0.88);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--stone);
       z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 6vw;
+      background: rgba(245, 242, 236, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--stone-dark);
     }
 
-    nav .logo {
+    .nav-logo {
       font-family: 'Lora', serif;
       font-size: 1.1rem;
+      font-weight: 600;
       color: var(--bark);
       text-decoration: none;
-      letter-spacing: 0.02em;
     }
 
     nav ul {
@@ -55,435 +58,485 @@
       gap: 2rem;
     }
 
-    nav ul a {
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--ink);
-      letter-spacing: 0.05em;
+    nav a {
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
+      color: var(--bark-light);
+      text-decoration: none;
       transition: color 0.2s;
     }
 
-    nav ul a:hover { color: var(--moss); }
+    nav a:hover { color: var(--moss); }
 
-    /* ── HERO ── */
+    /* HERO */
     #hero {
-      min-height: 100vh;
+      min-height: 0;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8rem 2.5rem 5rem;
-      max-width: 820px;
-      margin: 0 auto;
+      align-items: center;
+      padding: 7rem 6vw 4rem;
+      background: var(--stone);
+      position: relative;
+      overflow: hidden;
     }
 
-    .eyebrow {
-      font-size: 0.78rem;
-      font-weight: 500;
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--stone-dark);
+      opacity: 0.55;
+    }
+
+    .hero-content {
+      max-width: 680px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.82rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--moss);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.25rem;
     }
 
     h1 {
       font-family: 'Lora', serif;
-      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
       font-weight: 600;
-      line-height: 1.2;
-      color: var(--ink);
+      line-height: 1.15;
+      color: var(--bark);
       margin-bottom: 1.5rem;
     }
 
     h1 em {
       font-style: italic;
-      color: var(--bark);
+      color: var(--moss);
     }
 
     .hero-sub {
       font-size: 1.1rem;
-      font-weight: 300;
-      color: #5a5248;
-      max-width: 520px;
+      color: var(--bark-light);
+      max-width: 480px;
       margin-bottom: 2.5rem;
+      line-height: 1.75;
     }
 
     .btn {
       display: inline-block;
-      padding: 0.75rem 1.8rem;
-      background: var(--bark);
-      color: var(--cream);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      padding: 0.75rem 2rem;
+      background: var(--moss);
+      color: var(--white);
       border-radius: 2px;
-      transition: background 0.2s;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
     }
 
-    .btn:hover { background: var(--moss); }
+    .btn:hover { background: var(--moss-light); transform: translateY(-1px); }
 
-    /* ── DIVIDER ── */
-    .divider {
-      width: 60px;
-      height: 2px;
-      background: var(--stone);
-      margin: 5rem auto;
+    /* SECTIONS */
+    section {
+      padding: 6rem 6vw;
     }
 
-    /* ── ÜBER MICH ── */
-    #ueber {
-      max-width: 820px;
+    .section-inner {
+      max-width: 860px;
       margin: 0 auto;
-      padding: 0 2.5rem 5rem;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin-bottom: 0.75rem;
     }
 
     h2 {
       font-family: 'Lora', serif;
-      font-size: 1.8rem;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 1.5rem;
+      line-height: 1.25;
+      color: var(--bark);
+      margin-bottom: 1.75rem;
     }
 
-    .ueber-grid {
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--moss);
+      margin-bottom: 2rem;
+    }
+
+    /* ÜBER MICH */
+    #ueber-mich {
+      background: var(--white);
+    }
+
+    .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      gap: 4rem;
       align-items: start;
     }
 
-    .ueber-text p {
-      color: #4a4640;
-      margin-bottom: 1rem;
-    }
-
-    .ueber-details {
-      background: var(--sand);
-      border-left: 3px solid var(--stone);
-      padding: 1.8rem 2rem;
+    .about-img-placeholder {
+      aspect-ratio: 3/4;
+      background: var(--stone-dark);
       border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sand);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
     }
 
-    .ueber-details h3 {
+    .about-text p {
+      color: var(--bark-light);
+      margin-bottom: 1.25rem;
+    }
+
+    /* LEISTUNGEN */
+    #leistungen {
+      background: var(--stone);
+    }
+
+    .leistungen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .leistung-card {
+      background: var(--white);
+      border-radius: 2px;
+      padding: 2rem 1.75rem;
+      border-top: 3px solid var(--moss);
+    }
+
+    .leistung-card h3 {
       font-family: 'Lora', serif;
-      font-size: 1rem;
+      font-size: 1.15rem;
       font-weight: 600;
       color: var(--bark);
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
-    .detail-row {
+    .leistung-card p {
+      font-size: 0.93rem;
+      color: var(--bark-light);
+      line-height: 1.7;
+    }
+
+    /* KONTAKT */
+    #kontakt {
+      background: var(--bark);
+      color: var(--stone);
+    }
+
+    #kontakt h2 { color: var(--stone); }
+    #kontakt .section-label { color: var(--moss-light); }
+    #kontakt .divider { background: var(--moss-light); }
+
+    .kontakt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .kontakt-info p {
+      color: var(--sand);
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+
+    .kontakt-zeile {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
     }
 
-    .detail-item {
-      font-size: 0.9rem;
-      color: var(--ink);
-    }
-
-    .detail-item span {
-      display: block;
-      font-size: 0.72rem;
+    .kontakt-zeile span:first-child {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      color: var(--moss-light);
+    }
+
+    .kontakt-zeile a, .kontakt-zeile span:last-child {
+      color: var(--stone-dark);
+      text-decoration: none;
+      font-size: 0.97rem;
+    }
+
+    .kontakt-zeile a:hover { color: var(--white); }
+
+    /* Kontaktformular */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
       letter-spacing: 0.08em;
-      color: var(--moss);
-      margin-bottom: 0.1rem;
+      text-transform: uppercase;
+      color: var(--moss-light);
     }
 
-    /* ── LEISTUNGEN ── */
-    #leistungen {
-      background: var(--sand);
-      padding: 5rem 2.5rem;
-    }
-
-    .leistungen-inner {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .card {
-      background: var(--cream);
-      padding: 1.8rem;
+    .form-group input, .form-group textarea {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(200,185,154,0.3);
       border-radius: 2px;
-      border-top: 2px solid var(--stone);
+      padding: 0.65rem 0.9rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--stone);
+      outline: none;
+      transition: border-color 0.2s;
     }
 
-    .card-icon {
-      font-size: 1.4rem;
-      margin-bottom: 0.8rem;
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--moss-light);
     }
 
-    .card h3 {
-      font-family: 'Lora', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border: 1px solid var(--moss-light);
+      color: var(--moss-light);
+      background: transparent;
+      border-radius: 2px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, color 0.2s;
     }
 
-    .card p {
-      font-size: 0.88rem;
-      color: #5a5248;
+    .btn-outline:hover {
+      background: var(--moss);
+      color: var(--white);
+      border-color: var(--moss);
     }
 
-    /* ── KONTAKT ── */
-    #kontakt {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 5rem 2.5rem;
-      text-align: center;
-    }
-
-    #kontakt p {
-      color: #5a5248;
-      margin-bottom: 2rem;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ── IMPRESSUM ── */
+    /* IMPRESSUM */
     #impressum {
-      background: var(--sand);
-      padding: 4rem 2.5rem;
-      border-top: 1px solid var(--stone);
-    }
-
-    .impressum-inner {
-      max-width: 820px;
-      margin: 0 auto;
+      background: #2a231c;
+      color: var(--sand);
     }
 
     #impressum h2 {
-      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      color: var(--stone-dark);
+      margin-bottom: 1.25rem;
     }
 
     .impressum-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 2.5rem;
     }
 
     .impressum-block h3 {
+      font-family: 'Inter', sans-serif;
       font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--moss);
+      color: var(--moss-light);
       margin-bottom: 0.6rem;
     }
 
-    .impressum-block p,
-    .impressum-block a {
+    .impressum-block p, .impressum-block a {
       font-size: 0.9rem;
-      color: var(--ink);
       line-height: 1.8;
+      color: var(--sand);
+    }
+
+    .impressum-block a {
       text-decoration: none;
+      color: var(--sand);
     }
 
-    .impressum-block a:hover { color: var(--moss); }
+    .impressum-block a:hover { color: var(--stone); }
 
-    .impressum-note {
-      margin-top: 2.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--stone);
-      font-size: 0.82rem;
-      color: #7a7570;
-    }
-
-    /* ── FOOTER ── */
     footer {
+      background: #2a231c;
       text-align: center;
-      padding: 2rem;
-      font-size: 0.78rem;
-      color: var(--stone);
-      background: var(--ink);
+      padding: 1.5rem 6vw;
+      font-size: 0.8rem;
+      color: var(--bark-light);
+      border-top: 1px solid rgba(200,185,154,0.1);
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      nav { padding: 1rem 1.2rem; }
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
       nav ul { gap: 1.2rem; }
-      #hero .hero-content { padding-left: 1.2rem; padding-right: 1.2rem; }
-      #ueber, #kontakt { padding-left: 1.2rem; padding-right: 1.2rem; }
-      .ueber-grid, .impressum-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .cards { grid-template-columns: 1fr; }
-      #leistungen, #impressum { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .about-grid, .kontakt-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-img-placeholder { aspect-ratio: 4/3; }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+    @media (max-width: 480px) {
+      nav ul { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- Navigation -->
   <nav>
-    <a href="#hero" class="logo">Lena</a>
+    <a href="#hero" class="nav-logo">Vorname Nachname</a>
     <ul>
-      <li><a href="#ueber">Über mich</a></li>
+      <li><a href="#ueber-mich">Über mich</a></li>
       <li><a href="#leistungen">Leistungen</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
-      <li><a href="#impressum">Impressum</a></li>
     </ul>
   </nav>
 
-  <!-- HERO BANNER -->
+  <!-- Hero -->
   <section id="hero">
-  
-    <div class="hero-overlay"></div>
+    <div class="hero-bg-circle" style="width:480px;height:480px;top:-120px;right:-160px;"></div>
+    <div class="hero-bg-circle" style="width:260px;height:260px;bottom:60px;left:-80px;"></div>
     <div class="hero-content">
-      <p class="eyebrow">Kleingewerbe · Olsberg</p>
-      <h1>Lena –<br /><em>was du tust,</em><br />mit Sorgfalt.</h1>
-      <p class="hero-sub">
-        Ein kurzer, ehrlicher Satz darüber, wofür du stehst und wen du begleitest.
-        Ruhig und auf den Punkt.
-      </p>
-      <a href="#kontakt" class="btn">Kontakt aufnehmen</a>
+      <p class="hero-eyebrow">Kleingewerbe · Musterstadt</p>
+      <h1>Hallo, ich bin<br><em>Vorname Nachname.</em></h1>
+      <p class="hero-sub">Kurze, prägnante Beschreibung dessen, was Sie tun – was Sie auszeichnet und welchen Mehrwert Kunden bei Ihnen finden.</p>
+      <a href="#kontakt" class="btn">Jetzt Kontakt aufnehmen</a>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- ÜBER MICH -->
-  <section id="ueber">
-    <h2>Über mich</h2>
-    <div class="ueber-grid">
-      <div class="ueber-text">
-        <p>
-          Hier schreibst du zwei bis drei Sätze darüber, wer du bist – ganz persönlich
-          und ohne Marketingsprache. Was treibt dich an? Was macht deine Arbeit aus?
-        </p>
-        <p>
-          Ein zweiter Absatz darf konkret werden: Wie lange machst du das schon?
-          Woher kommst du fachlich? Was schätzen deine Kunden besonders an dir?
-        </p>
-      </div>
-      <div class="ueber-details">
-        <h3>Auf einen Blick</h3>
-        <div class="detail-row">
-          <div class="detail-item">
-            <span>Tätigkeitsfeld</span>
-            Dein Beruf / Deine Branche
-          </div>
-          <div class="detail-item">
-            <span>Standort</span>
-            Deine Stadt, Deutschland
-          </div>
-          <div class="detail-item">
-            <span>Verfügbarkeit</span>
-            Auf Anfrage
-          </div>
-          <div class="detail-item">
-            <span>Sprachen</span>
-            Deutsch, Englisch
-          </div>
+  <!-- Über mich -->
+  <section id="ueber-mich">
+    <div class="section-inner">
+      <p class="section-label">Über mich</p>
+      <div class="about-grid">
+        <div class="about-img-placeholder">Ihr Foto hier</div>
+        <div class="about-text">
+          <h2>Ihr Name &amp; Ihre Geschichte</h2>
+          <div class="divider"></div>
+          <p>Hier erzählen Sie, wer Sie sind und was Sie antreibt. Beschreiben Sie Ihren beruflichen Hintergrund und warum Sie das machen, was Sie tun.</p>
+          <p>Ein zweiter Absatz eignet sich gut für persönliche Werte oder Ihre Arbeitsweise – was Kunden bei der Zusammenarbeit mit Ihnen erwartet.</p>
+          <p>Und vielleicht noch ein Satz darüber, was Sie von anderen unterscheidet oder was Ihnen besonders wichtig ist.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- LEISTUNGEN -->
+  <!-- Leistungen -->
   <section id="leistungen">
-    <div class="leistungen-inner">
+    <div class="section-inner">
+      <p class="section-label">Leistungen</p>
       <h2>Was ich anbiete</h2>
-      <div class="cards">
-        <div class="card">
-          <div class="card-icon">🌿</div>
+      <div class="divider"></div>
+      <p style="color: var(--bark-light); max-width: 560px;">Ein kurzer einleitender Satz, der Ihr Angebot zusammenfasst und Neugier weckt.</p>
+      <div class="leistungen-grid">
+        <div class="leistung-card">
           <h3>Leistung 1</h3>
-          <p>Kurze Beschreibung, was dahintersteckt und welchen Nutzen dein Kunde hat.</p>
+          <p>Beschreibung dieser Leistung – was Sie konkret anbieten und welchen Nutzen der Kunde davon hat.</p>
         </div>
-        <div class="card">
-          <div class="card-icon">✦</div>
+        <div class="leistung-card">
           <h3>Leistung 2</h3>
-          <p>Kurze Beschreibung, was dahintersteckt und welchen Nutzen dein Kunde hat.</p>
+          <p>Beschreibung dieser Leistung – was Sie konkret anbieten und welchen Nutzen der Kunde davon hat.</p>
         </div>
-        <div class="card">
-          <div class="card-icon">◎</div>
+        <div class="leistung-card">
           <h3>Leistung 3</h3>
-          <p>Kurze Beschreibung, was dahintersteckt und welchen Nutzen dein Kunde hat.</p>
+          <p>Beschreibung dieser Leistung – was Sie konkret anbieten und welchen Nutzen der Kunde davon hat.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- KONTAKT -->
+  <!-- Kontakt -->
   <section id="kontakt">
-    <h2>Kontakt</h2>
-    <p>Du hast ein Anliegen oder möchtest mehr erfahren? Ich freue mich auf deine Nachricht.</p>
-    <a href="mailto:hey@lenasvanlife.com" class="btn">hey@lenasvanlife.com</a>
+    <div class="section-inner">
+      <p class="section-label">Kontakt</p>
+      <div class="kontakt-grid">
+        <div class="kontakt-info">
+          <h2>Lassen Sie uns sprechen.</h2>
+          <div class="divider"></div>
+          <p>Sie haben Fragen oder möchten zusammenarbeiten? Ich freue mich auf Ihre Nachricht.</p>
+          <div class="kontakt-zeile">
+            <span>E-Mail</span>
+            <a href="mailto:ihre@email.de">ihre@email.de</a>
+          </div>
+          <div class="kontakt-zeile">
+            <span>Telefon</span>
+            <span>+49 000 000000</span>
+          </div>
+          <div class="kontakt-zeile">
+            <span>Ort</span>
+            <span>Musterstadt, Deutschland</span>
+          </div>
+        </div>
+        <div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Ihr Name" />
+          </div>
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" placeholder="ihre@email.de" />
+          </div>
+          <div class="form-group">
+            <label for="nachricht">Nachricht</label>
+            <textarea id="nachricht" placeholder="Wie kann ich Ihnen helfen?"></textarea>
+          </div>
+          <button class="btn-outline" onclick="alert('Bitte richten Sie das Formular mit einem Backend-Dienst (z. B. Formspree) ein.')">Nachricht senden</button>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- IMPRESSUM -->
+  <!-- Impressum -->
   <section id="impressum">
-    <div class="impressum-inner">
+    <div class="section-inner">
       <h2>Impressum</h2>
       <div class="impressum-grid">
         <div class="impressum-block">
           <h3>Angaben gemäß § 5 TMG</h3>
           <p>
-            Lena [Nachname]<br />
-            Auf'm Bohlen 8<br />
-            59939 Olsberg<br />
+            Vorname Nachname<br />
+            Musterstraße 1<br />
+            12345 Musterstadt<br />
             Deutschland
           </p>
         </div>
         <div class="impressum-block">
           <h3>Kontakt</h3>
           <p>
-            E-Mail: <a href="mailto:hey@lenasvanlife.com">hey@lenasvanlife.com</a>
+            Telefon: +49 000 000000<br />
+            E-Mail: <a href="mailto:ihre@email.de">ihre@email.de</a>
           </p>
         </div>
         <div class="impressum-block">
-          <h3>Berufsbezeichnung</h3>
-          <p>
-            Kleingewerbetreibend·e<br />
-            (Deine Tätigkeit)<br />
-            Kein Eintrag im Handelsregister
-          </p>
+          <h3>Kleinunternehmer</h3>
+          <p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
         </div>
         <div class="impressum-block">
-          <h3>Umsatzsteuer</h3>
-          <p>
-            Gemäß § 19 UStG wird keine<br />
-            Umsatzsteuer ausgewiesen.<br />
-            (Kleinunternehmerregelung)
-          </p>
+          <h3>Haftungsausschluss</h3>
+          <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für externe Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
         </div>
       </div>
-      <p class="impressum-note">
-        <strong>Haftungshinweis:</strong> Trotz sorgfältiger inhaltlicher Kontrolle übernehme ich keine
-        Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind
-        ausschließlich deren Betreiber verantwortlich.
-      </p>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    &copy; <span id="year"></span> Lena · Alle Rechte vorbehalten
+    <p>© 2026 Vorname Nachname · Alle Rechte vorbehalten · <a href="#impressum" style="color: inherit;">Impressum</a></p>
   </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 
 </body>
 </html>
