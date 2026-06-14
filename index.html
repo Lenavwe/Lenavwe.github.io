@@ -399,7 +399,6 @@
 
   <!-- Navigation -->
   <nav>
-    <!-- FIX 1: Tippfehler korrigiert: "Leansvanlife" → "Lenasvanlife" -->
     <a href="#hero" class="nav-logo">Lenasvanlife</a>
     <ul>
       <li><a href="#ueber-mich">Über mich</a></li>
@@ -413,7 +412,8 @@
     <div class="hero-bg-circle" style="width:480px;height:480px;top:-120px;right:-160px;"></div>
     <div class="hero-bg-circle" style="width:260px;height:260px;bottom:60px;left:-80px;"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Kleingewerbe · Musterstadt</p>
+      <!-- FIX 2: "Musterstadt" → "Olsberg" -->
+      <p class="hero-eyebrow">Kleingewerbe · Olsberg</p>
       <h1>Hey, ich bin<br><em>Lena!</em></h1>
       <p class="hero-sub">Kurze, prägnante Beschreibung dessen, was Sie tun – was Sie auszeichnet und welchen Mehrwert Kunden bei Ihnen finden.</p>
       <a href="#kontakt" class="btn">Jetzt Kontakt aufnehmen</a>
@@ -472,7 +472,6 @@
         <div class="kontakt-info">
           <h2>Fragen?</h2>
           <div class="divider"></div>
-          <!-- FIX 2: Tippfehler korrigiert: "mir mir" → "mit mir" -->
           <p>Du hast Fragen oder möchtest mit mir zusammenarbeiten? Ich freue mich auf deine Nachricht.</p>
           <div class="kontakt-zeile">
             <span>E-Mail</span>
@@ -505,34 +504,6 @@
               Etwas ist schiefgelaufen. Bitte versuche es erneut.
             </p>
           </form>
-          <script>
-            const form = document.getElementById('kontakt-form');
-            form.addEventListener('submit', async function(e) {
-              e.preventDefault();
-              const btn = form.querySelector('button[type="submit"]');
-              btn.disabled = true;
-              btn.textContent = 'Wird gesendet…';
-              try {
-                const response = await fetch(form.action, {
-                  method: 'POST',
-                  body: new FormData(form),
-                  headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                  form.reset();
-                  document.getElementById('form-success').style.display = 'block';
-                  document.getElementById('form-error').style.display = 'none';
-                  btn.style.display = 'none';
-                } else {
-                  throw new Error();
-                }
-              } catch {
-                document.getElementById('form-error').style.display = 'block';
-                btn.disabled = false;
-                btn.textContent = 'Nachricht senden';
-              }
-            });
-          </script>
         </div>
       </div>
     </div>
@@ -573,6 +544,36 @@
   <footer>
     <p>© 2026 Lena Vorderwülbecke · Alle Rechte vorbehalten · <a href="#impressum" style="color: inherit;">Impressum</a></p>
   </footer>
+
+  <!-- FIX 5: Script ans Ende des body verschoben -->
+  <script>
+    const form = document.getElementById('kontakt-form');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Wird gesendet…';
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          form.reset();
+          document.getElementById('form-success').style.display = 'block';
+          document.getElementById('form-error').style.display = 'none';
+          btn.style.display = 'none';
+        } else {
+          throw new Error();
+        }
+      } catch {
+        document.getElementById('form-error').style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Nachricht senden';
+      }
+    });
+  </script>
 
 </body>
 </html>
