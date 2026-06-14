@@ -205,6 +205,175 @@
       margin-bottom: 1.25rem;
     }
 
+    /* ── EVENTS SLIDER ── */
+    #events {
+      background: var(--stone-dark);
+      padding: 6rem 0;
+      overflow: hidden;
+    }
+
+    #events .section-inner {
+      padding: 0 6vw;
+    }
+
+    #events .section-label { color: var(--moss); }
+    #events h2 { color: var(--bark); }
+
+    .slider-viewport {
+      position: relative;
+      overflow: hidden;
+      margin-top: 2.5rem;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 1.5rem;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0 6vw;
+      will-change: transform;
+    }
+
+    .event-card {
+      flex: 0 0 calc(min(320px, 78vw));
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(61,52,40,0.10);
+    }
+
+    /* 9:16 image slot */
+    .event-img {
+      aspect-ratio: 9 / 16;
+      background: var(--stone-dark);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .event-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* placeholder when no image */
+    .event-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--sand);
+    }
+
+    .event-img-placeholder svg {
+      opacity: 0.45;
+    }
+
+    .event-img-placeholder span {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .event-body {
+      padding: 1.5rem 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .event-date {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--moss);
+    }
+
+    .event-title {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--bark);
+      line-height: 1.3;
+    }
+
+    .event-desc {
+      font-size: 0.9rem;
+      color: var(--bark-light);
+      line-height: 1.65;
+      margin-top: 0.25rem;
+    }
+
+    .event-tag {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      background: var(--stone);
+      border-radius: 2px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--bark-light);
+      align-self: flex-start;
+    }
+
+    /* Slider controls */
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 2rem;
+      padding: 0 6vw;
+    }
+
+    .slider-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--moss);
+      background: transparent;
+      color: var(--moss);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .slider-btn:hover {
+      background: var(--moss);
+      color: var(--white);
+    }
+
+    .slider-btn:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+
+    .slider-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .slider-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sand);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .slider-dot.active {
+      background: var(--moss);
+      transform: scale(1.3);
+    }
+
     /* LEISTUNGEN */
     #leistungen {
       background: var(--stone);
@@ -283,7 +452,6 @@
 
     .kontakt-zeile a:hover { color: var(--white); }
 
-    /* Kontaktformular */
     .form-group {
       display: flex;
       flex-direction: column;
@@ -405,6 +573,7 @@
     <a href="#hero" class="nav-logo">Lenasvanlife</a>
     <ul>
       <li><a href="#ueber-mich">Über mich</a></li>
+      <li><a href="#events">Events</a></li>
       <li><a href="#leistungen">Leistungen</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
@@ -436,6 +605,75 @@
           <p>Und vielleicht noch ein Satz darüber, was Sie von anderen unterscheidet oder was Ihnen besonders wichtig ist.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="events">
+    <div class="section-inner">
+      <p class="section-label">Events 2026</p>
+      <h2>Komm mit dabei</h2>
+      <div class="divider"></div>
+      <p style="color: var(--bark-light); max-width: 560px;">Dieses Jahr nehme ich euch mit auf zwei besondere Abenteuer – hier schon mal ein erster Vorgeschmack.</p>
+    </div>
+
+    <div class="slider-viewport">
+      <div class="slider-track" id="sliderTrack">
+
+        <!-- Event 1 – ersetze src mit deinem Bild (9:16) -->
+        <div class="event-card">
+          <div class="event-img">
+            <!-- <img src="event-1.jpg" alt="Event 1" /> -->
+            <div class="event-img-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span>Bild 9 : 16</span>
+            </div>
+          </div>
+          <div class="event-body">
+            <span class="event-date">Datum · Ort</span>
+            <div class="event-title">Vantreffen Sauerland 2026</div>
+            <p class="event-desc">Kurze Beschreibung – was erwartet die Teilnehmer, was macht dieses Event besonders?</p>
+            <span class="event-tag">Jetzt Anmelden</span>
+          </div>
+        </div>
+
+        <!-- Event 2 – ersetze src mit deinem Bild (9:16) -->
+        <div class="event-card">
+          <div class="event-img">
+            <img src="lenasvanlife - vantreffen sauerland 2026.webp" alt="Vantreffen Sauerland 2026" />
+            <div class="event-img-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span>Bild 9 : 16</span>
+            </div>
+          </div>
+          <div class="event-body">
+            <span class="event-date">19.7.2026 · Willingen</span>
+            <div class="event-title">Bikepark Day</div>
+            <p class="event-desc">Kurze Beschreibung – was erwartet die Teilnehmer, was macht dieses Event besonders?</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="slider-controls">
+      <button class="slider-btn" id="prevBtn" aria-label="Vorheriges Event" disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <div class="slider-dots" id="sliderDots"></div>
+      <button class="slider-btn" id="nextBtn" aria-label="Nächstes Event">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
     </div>
   </section>
 
@@ -545,6 +783,7 @@
   </footer>
 
   <script>
+    /* ── Kontakt-Formular ── */
     const form = document.getElementById('kontakt-form');
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -571,6 +810,58 @@
         btn.textContent = 'Nachricht senden';
       }
     });
+
+    /* ── Events Slider ── */
+    (function() {
+      const track   = document.getElementById('sliderTrack');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const dotsEl  = document.getElementById('sliderDots');
+
+      const cards = track.querySelectorAll('.event-card');
+      const total = cards.length;
+      let current = 0;
+
+      /* Build dots */
+      cards.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+      });
+
+      function cardWidth() {
+        return cards[0].getBoundingClientRect().width + 24; /* card + gap (1.5rem ≈ 24px) */
+      }
+
+      function goTo(idx) {
+        current = Math.max(0, Math.min(idx, total - 1));
+        track.style.transform = `translateX(-${current * cardWidth()}px)`;
+
+        dotsEl.querySelectorAll('.slider-dot').forEach((d, i) =>
+          d.classList.toggle('active', i === current)
+        );
+
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === total - 1;
+      }
+
+      prevBtn.addEventListener('click', () => goTo(current - 1));
+      nextBtn.addEventListener('click', () => goTo(current + 1));
+
+      /* Touch / swipe */
+      let startX = 0;
+      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend',   e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      });
+
+      /* Recalc on resize */
+      window.addEventListener('resize', () => goTo(current));
+
+      goTo(0);
+    })();
   </script>
 
 </body>
