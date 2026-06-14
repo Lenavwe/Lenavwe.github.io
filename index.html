@@ -168,7 +168,19 @@
       background: rgba(30, 24, 16, 0.45);
       z-index: 0;
     }
-
+.photo-credit {
+  position: absolute;
+  bottom: 50%;
+  right: 0.6rem;
+  transform: translateY(50%) rotate(90deg);
+  transform-origin: center center;
+  z-index: 2;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  pointer-events: none;
+}
     .hero-bg-circle { display: none; }
 
     .hero-content {
@@ -671,6 +683,7 @@
 
   <!-- Hero -->
   <section id="hero">
+   <span class="photo-credit">Foto: Jonas Dülberg / Sauerland Tourismus e.V.</span>  
     <div class="hero-content">
       <h1>Hey, ich bin<br><em>Lena!</em></h1>
       <p class="hero-sub">Herzlich willkommen in meiner Welt.🤗</p>
