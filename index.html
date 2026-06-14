@@ -72,21 +72,32 @@
 
     /* HERO */
     #hero {
-      min-height: 0;
+      min-height: 85vh;
       display: flex;
       align-items: center;
       padding: 7rem 6vw 4rem;
-      background: var(--stone);
       position: relative;
       overflow: hidden;
+      background-image: url('lenasvanlife - Titelbild.webp');
+      background-size: cover;
+      background-position: center;
     }
 
-    .hero-bg-circle {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--stone-dark);
-      opacity: 0.55;
+    @media (min-width: 768px) {
+      #hero {
+        background-image: url('lenasvanlife - Titelbild 1920x1080.webp');
+      }
     }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(30, 24, 16, 0.45);
+      z-index: 0;
+    }
+
+    .hero-bg-circle { display: none; }
 
     .hero-content {
       max-width: 680px;
@@ -94,31 +105,23 @@
       z-index: 1;
     }
 
-    .hero-eyebrow {
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--moss);
-      margin-bottom: 1.25rem;
-    }
-
     h1 {
       font-family: 'Lora', serif;
       font-size: clamp(2.6rem, 5.5vw, 4.2rem);
       font-weight: 600;
       line-height: 1.15;
-      color: var(--bark);
+      color: #fff;
       margin-bottom: 1.5rem;
     }
 
     h1 em {
       font-style: italic;
-      color: var(--moss);
+      color: var(--moss-light);
     }
 
     .hero-sub {
       font-size: 1.1rem;
-      color: var(--bark-light);
+      color: rgba(255, 255, 255, 0.82);
       max-width: 480px;
       margin-bottom: 2.5rem;
       line-height: 1.75;
@@ -409,11 +412,7 @@
 
   <!-- Hero -->
   <section id="hero">
-    <div class="hero-bg-circle" style="width:480px;height:480px;top:-120px;right:-160px;"></div>
-    <div class="hero-bg-circle" style="width:260px;height:260px;bottom:60px;left:-80px;"></div>
     <div class="hero-content">
-      <!-- FIX 2: "Musterstadt" → "Olsberg" -->
-      <p class="hero-eyebrow">Kleingewerbe · Olsberg</p>
       <h1>Hey, ich bin<br><em>Lena!</em></h1>
       <p class="hero-sub">Kurze, prägnante Beschreibung dessen, was Sie tun – was Sie auszeichnet und welchen Mehrwert Kunden bei Ihnen finden.</p>
       <a href="#kontakt" class="btn">Jetzt Kontakt aufnehmen</a>
@@ -545,7 +544,6 @@
     <p>© 2026 Lena Vorderwülbecke · Alle Rechte vorbehalten · <a href="#impressum" style="color: inherit;">Impressum</a></p>
   </footer>
 
-  <!-- FIX 5: Script ans Ende des body verschoben -->
   <script>
     const form = document.getElementById('kontakt-form');
     form.addEventListener('submit', async function(e) {
