@@ -399,7 +399,8 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="#hero" class="nav-logo">Leansvanlife</a>
+    <!-- FIX 1: Tippfehler korrigiert: "Leansvanlife" → "Lenasvanlife" -->
+    <a href="#hero" class="nav-logo">Lenasvanlife</a>
     <ul>
       <li><a href="#ueber-mich">Über mich</a></li>
       <li><a href="#leistungen">Leistungen</a></li>
@@ -426,7 +427,7 @@
       <div class="about-grid">
         <div class="about-img-placeholder" style="background: none; padding: 0; display: block;">
           <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DMa8UOHsrF3/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:100%; min-width:326px; padding:0; width:100%;"></blockquote>
-          <script async src="//www.instagram.com/embed.js"></script>
+          <script async src="https://www.instagram.com/embed.js"></script>
         </div>
         <div class="about-text">
           <h2>Lena &amp; Ihre Geschichte</h2>
@@ -471,7 +472,8 @@
         <div class="kontakt-info">
           <h2>Fragen?</h2>
           <div class="divider"></div>
-          <p>Du hast Fragen oder möchtest mir mir zusammenarbeiten? Ich freue mich auf deine Nachricht.</p>
+          <!-- FIX 2: Tippfehler korrigiert: "mir mir" → "mit mir" -->
+          <p>Du hast Fragen oder möchtest mit mir zusammenarbeiten? Ich freue mich auf deine Nachricht.</p>
           <div class="kontakt-zeile">
             <span>E-Mail</span>
             <a href="mailto:hey@lenasvanlife.com">hey@lenasvanlife.com</a>
@@ -482,19 +484,21 @@
           </div>
         </div>
         <div>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Ihr Name" />
-          </div>
-          <div class="form-group">
-            <label for="email">E-Mail</label>
-            <input type="email" id="email" placeholder="ihre@email.de" />
-          </div>
-          <div class="form-group">
-            <label for="nachricht">Nachricht</label>
-            <textarea id="nachricht" placeholder="Wie kann ich Ihnen helfen?"></textarea>
-          </div>
-          <button class="btn-outline" onclick="alert('Bitte richten Sie das Formular mit einem Backend-Dienst (z. B. Formspree) ein.')">Nachricht senden</button>
+          <form action="https://formspree.io/f/meewvryy" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Dein Name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" placeholder="deine@email.de" required />
+            </div>
+            <div class="form-group">
+              <label for="nachricht">Nachricht</label>
+              <textarea id="nachricht" name="nachricht" placeholder="Wie kann ich dir helfen?" required></textarea>
+            </div>
+            <button type="submit" class="btn-outline">Nachricht senden</button>
+          </form>
         </div>
       </div>
     </div>
@@ -517,7 +521,7 @@
         <div class="impressum-block">
           <h3>Kontakt</h3>
           <p>
-            E-Mail: <a href="mailto:ihre@email.de">hey@lenasvanlife.com</a>
+            E-Mail: <a href="mailto:hey@lenasvanlife.com">hey@lenasvanlife.com</a>
           </p>
         </div>
         <div class="impressum-block">
@@ -533,7 +537,7 @@
   </section>
 
   <footer>
-    <p>© 2026 Vorname Nachname · Alle Rechte vorbehalten · <a href="#impressum" style="color: inherit;">Impressum</a></p>
+    <p>© 2026 Lena Vorderwülbecke · Alle Rechte vorbehalten · <a href="#impressum" style="color: inherit;">Impressum</a></p>
   </footer>
 
 </body>
