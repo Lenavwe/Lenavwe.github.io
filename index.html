@@ -171,15 +171,21 @@
 .photo-credit {
   position: absolute;
   bottom: 50%;
-  right: 0.2rem;
-  transform: translateY(50%) rotate(-90deg);
-  transform-origin: center center;
+  right: 0;
+  transform: translateY(50%) rotate(90deg);
+  transform-origin: center right;
   z-index: 2;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   color: rgba(255, 255, 255, 0.65);
   letter-spacing: 0.05em;
   white-space: nowrap;
   pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .photo-credit {
+    font-size: 0.55rem;
+  }
 }
     .hero-bg-circle { display: none; }
 
