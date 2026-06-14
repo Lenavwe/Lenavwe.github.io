@@ -484,7 +484,7 @@
           </div>
         </div>
         <div>
-          <form action="https://formspree.io/f/meewvryy" method="POST">
+          <form id="kontakt-form" action="https://formspree.io/f/meewvryy" method="POST">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" placeholder="Dein Name" required />
@@ -498,7 +498,41 @@
               <textarea id="nachricht" name="nachricht" placeholder="Wie kann ich dir helfen?" required></textarea>
             </div>
             <button type="submit" class="btn-outline">Nachricht senden</button>
+            <p id="form-success" style="display:none; margin-top:1rem; color: var(--moss-light); font-size: 0.95rem;">
+              ✓ Danke! Deine Nachricht wurde erfolgreich gesendet.
+            </p>
+            <p id="form-error" style="display:none; margin-top:1rem; color: #c0392b; font-size: 0.95rem;">
+              Etwas ist schiefgelaufen. Bitte versuche es erneut.
+            </p>
           </form>
+          <script>
+            const form = document.getElementById('kontakt-form');
+            form.addEventListener('submit', async function(e) {
+              e.preventDefault();
+              const btn = form.querySelector('button[type="submit"]');
+              btn.disabled = true;
+              btn.textContent = 'Wird gesendet…';
+              try {
+                const response = await fetch(form.action, {
+                  method: 'POST',
+                  body: new FormData(form),
+                  headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                  form.reset();
+                  document.getElementById('form-success').style.display = 'block';
+                  document.getElementById('form-error').style.display = 'none';
+                  btn.style.display = 'none';
+                } else {
+                  throw new Error();
+                }
+              } catch {
+                document.getElementById('form-error').style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Nachricht senden';
+              }
+            });
+          </script>
         </div>
       </div>
     </div>
@@ -537,7 +571,7 @@
   </section>
 
   <footer>
-    <p>© 2026 Lena Vorderwülbecke · Alle Rechte vorbehalten · <a href="#impressum" style="color: inherit;">Impressum</a></p>
+    <p>© 2026 Vorname Nachname · Alle Rechte vorbehalten · <a href="#impressum" style="color: inherit;">Impressum</a></p>
   </footer>
 
 </body>
