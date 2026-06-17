@@ -297,6 +297,15 @@
       display: block; width: 20px; height: 1.5px;
       background: var(--moss-light); flex-shrink: 0;
     }
+    @media (max-width: 430px) {
+      .hero-eyebrow {
+        font-size: .6rem;
+        letter-spacing: .07em;
+        padding: .35rem .7rem .35rem .6rem;
+        gap: .35rem;
+      }
+      .hero-eyebrow::before { width: 14px; }
+    }
 
     #hero h1 {
       font-family: 'Lora', serif;
@@ -546,21 +555,26 @@
       display: flex;
       gap: var(--s3);
       padding: 0 6vw var(--s2);
-      transition: transform .45s cubic-bezier(.4,0,.2,1);
-      will-change: transform;
     }
 
     @media (min-width: 769px) {
       .slider-track {
         justify-content: center;
         flex-wrap: wrap;
-        transform: none !important;
       }
       .slider-controls { display: none; }
     }
 
     @media (max-width: 768px) {
-      .slider-viewport { overflow: hidden; }
+      .slider-viewport {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .slider-viewport::-webkit-scrollbar { display: none; }
+      .slider-track { flex-wrap: nowrap; }
+      .event-card { scroll-snap-align: center; }
     }
 
     .event-card {
@@ -1299,12 +1313,15 @@
     });
 
     /* ── Events Slider ── */
-    const track  = document.getElementById('sliderTrack');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsEl  = document.getElementById('sliderDots');
-    const cards   = Array.from(track.querySelectorAll('.event-card'));
-    let current   = 0;
+    const viewport = document.querySelector('.slider-viewport');
+    const prevBtn  = document.getElementById('prevBtn');
+    const nextBtn  = document.getElementById('nextBtn');
+    const dotsEl   = document.getElementById('sliderDots');
+    const cards    = Array.from(document.querySelectorAll('.event-card'));
+    let current    = 0;
+
+    /* Nur auf Mobile aktiv */
+    function isMobile() { return window.innerWidth <= 768; }
 
     cards.forEach((_, i) => {
       const d = document.createElement('button');
@@ -1315,10 +1332,7 @@
       dotsEl.appendChild(d);
     });
 
-    function goTo(idx) {
-      current = Math.max(0, Math.min(idx, cards.length - 1));
-      const offset = cards[current].offsetLeft - cards[0].offsetLeft;
-      track.style.transform = `translateX(-${offset}px)`;
+    function updateDots() {
       dotsEl.querySelectorAll('.slider-dot').forEach((d, i) => {
         d.classList.toggle('active', i === current);
         d.setAttribute('aria-pressed', String(i === current));
@@ -1327,28 +1341,49 @@
       nextBtn.disabled = current === cards.length - 1;
     }
 
+    function goTo(idx) {
+      if (!isMobile()) return;
+      current = Math.max(0, Math.min(idx, cards.length - 1));
+      cards[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      updateDots();
+    }
+
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
 
-    track.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft')  goTo(current - 1);
-      if (e.key === 'ArrowRight') goTo(current + 1);
-    });
-
+    /* Swipe */
     let startX = 0, startT = 0;
-    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; startT = Date.now(); }, { passive: true });
-    track.addEventListener('touchend', e => {
+    viewport.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      startT = Date.now();
+    }, { passive: true });
+    viewport.addEventListener('touchend', e => {
+      if (!isMobile()) return;
       const dx = startX - e.changedTouches[0].clientX;
-      if (Math.abs(dx) > 30 || Math.abs(dx) / (Date.now() - startT) > 0.3) goTo(current + (dx > 0 ? 1 : -1));
+      if (Math.abs(dx) > 40 || (Math.abs(dx) > 15 && (Date.now() - startT) < 300)) {
+        goTo(current + (dx > 0 ? 1 : -1));
+      }
     }, { passive: true });
 
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => goTo(current), 100);
-    });
+    /* Scroll-Sync: Dots folgen dem nativen Scroll */
+    let scrollTimer;
+    viewport.addEventListener('scroll', () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        if (!isMobile()) return;
+        const center = viewport.scrollLeft + viewport.offsetWidth / 2;
+        let closest = 0;
+        let minDist = Infinity;
+        cards.forEach((card, i) => {
+          const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+          const dist = Math.abs(center - cardCenter);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        if (closest !== current) { current = closest; updateDots(); }
+      }, 80);
+    }, { passive: true });
 
-    goTo(0);
+    updateDots();
   })();
   </script>
 
