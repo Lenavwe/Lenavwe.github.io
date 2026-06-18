@@ -23,7 +23,6 @@
       --white:      #fdfcf9;
       --dark:       #2a231c;
 
-      /* Spacing — kompaktere Skala */
       --s1: .5rem; --s2: 1rem; --s3: 1.5rem;
       --s4: 2rem;  --s5: 2.5rem; --s6: 3rem; --s7: 4rem;
 
@@ -35,9 +34,6 @@
       --ease-out: cubic-bezier(.22,1,.36,1);
     }
 
-    /* ─────────────────────────────────────────
-       RESET & BASE
-    ───────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     @media (prefers-reduced-motion: reduce) {
@@ -58,9 +54,6 @@
       overflow-x: hidden;
     }
 
-    /* ─────────────────────────────────────────
-       SKIP LINK
-    ───────────────────────────────────────── */
     .skip-link {
       position: absolute;
       top: -200%;
@@ -76,9 +69,6 @@
     }
     .skip-link:focus { top: var(--s2); }
 
-    /* ─────────────────────────────────────────
-       SCROLL REVEAL
-    ───────────────────────────────────────── */
     .reveal {
       opacity: 1;
       transform: none;
@@ -97,25 +87,19 @@
     .reveal-d3 { transition-delay: 240ms; }
     .reveal-d4 { transition-delay: 320ms; }
 
-    /* ─────────────────────────────────────────
-       SECTION TRANSITIONS
-       Wellenförmige Trennlinien zwischen Sektionen
-    ───────────────────────────────────────── */
     .wave-divider {
       display: block;
       width: 100%;
       overflow: hidden;
       line-height: 0;
-      margin-bottom: -1px; /* Verhindert Lücken */
+      margin-bottom: -1px;
     }
     .wave-divider svg {
       display: block;
       width: 100%;
     }
 
-    /* ─────────────────────────────────────────
-       NAV
-    ───────────────────────────────────────── */
+    /* ── NAV ── */
     nav {
       position: fixed;
       inset: 0 0 auto;
@@ -166,7 +150,6 @@
     nav a:hover::after { width: 100%; }
     nav a:focus-visible { outline: 2px solid var(--moss); outline-offset: 4px; border-radius: 2px; }
 
-    /* Burger */
     .burger {
       display: none;
       flex-direction: column;
@@ -190,7 +173,6 @@
     .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-    /* Mobile overlay */
     .mobile-menu {
       display: none;
       position: fixed; inset: 0;
@@ -223,9 +205,7 @@
 
     body.menu-open { overflow: hidden; }
 
-    /* ─────────────────────────────────────────
-       HERO
-    ───────────────────────────────────────── */
+    /* ── HERO ── */
     #hero {
       min-height: 85svh;
       max-height: 90svh;
@@ -247,8 +227,6 @@
         linear-gradient(to right, rgba(15,11,6,.55) 0%, transparent 65%);
       z-index: 0;
     }
-
-
 
     .photo-credit {
       position: absolute;
@@ -392,9 +370,7 @@
       to   { opacity: 1; transform: none; }
     }
 
-    /* ─────────────────────────────────────────
-       SECTION BASE — kompaktere Paddings
-    ───────────────────────────────────────── */
+    /* ── SECTIONS ── */
     section { padding: var(--s6) 6vw; }
     .section-inner { max-width: 920px; margin: 0 auto; }
 
@@ -423,9 +399,7 @@
       margin-bottom: var(--s3); border-radius: 2px;
     }
 
-    /* ─────────────────────────────────────────
-       ÜBER MICH
-    ───────────────────────────────────────── */
+    /* ── ÜBER MICH ── */
     #ueber-mich {
       background: var(--stone);
       padding-top: var(--s5);
@@ -475,11 +449,7 @@
       text-transform: uppercase; color: var(--moss);
     }
 
-
-
-    /* ─────────────────────────────────────────
-       BENTO
-    ───────────────────────────────────────── */
+    /* ── BENTO ── */
     #hobbies {
       background: var(--stone-dark);
       padding: var(--s5) 6vw var(--s6);
@@ -540,9 +510,7 @@
       color: rgba(255,255,255,.14); line-height: 1; margin-top: auto;
     }
 
-    /* ─────────────────────────────────────────
-       EVENTS
-    ───────────────────────────────────────── */
+    /* ── EVENTS ── */
     #events {
       background: var(--stone);
       padding: var(--s5) 0 var(--s6);
@@ -666,9 +634,7 @@
     .slider-dot.active { background: var(--moss); transform: scale(1.4); }
     .slider-dot:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
 
-    /* ─────────────────────────────────────────
-       LEISTUNGEN
-    ───────────────────────────────────────── */
+    /* ── LEISTUNGEN ── */
     #leistungen {
       background: var(--white);
       padding: var(--s5) 6vw var(--s6);
@@ -701,9 +667,7 @@
     }
     .leistung-card p { font-size: .92rem; color: var(--bark-light); line-height: 1.7; }
 
-    /* ─────────────────────────────────────────
-       KONTAKT
-    ───────────────────────────────────────── */
+    /* ── KONTAKT ── */
     #kontakt {
       background: var(--bark);
       padding: var(--s5) 6vw var(--s6);
@@ -794,9 +758,7 @@
       display: none; margin-top: var(--s2); color: #e87a7a; font-size: .9rem;
     }
 
-    /* ─────────────────────────────────────────
-       IMPRESSUM
-    ───────────────────────────────────────── */
+    /* ── IMPRESSUM ── */
     #impressum {
       background: var(--dark); padding: var(--s5) 6vw;
     }
@@ -816,9 +778,7 @@
     .impressum-block a { text-decoration: none; }
     .impressum-block a:hover { color: var(--stone); }
 
-    /* ─────────────────────────────────────────
-       FOOTER
-    ───────────────────────────────────────── */
+    /* ── FOOTER ── */
     footer {
       background: var(--dark);
       text-align: center; padding: 1.25rem 6vw;
@@ -828,9 +788,7 @@
     footer a { color: inherit; text-decoration: none; }
     footer a:hover { color: var(--sand); }
 
-    /* ─────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────── */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       section { padding: var(--s5) 5vw; }
       #ueber-mich, #hobbies, #events, #leistungen, #kontakt, #impressum {
@@ -946,7 +904,7 @@
       </div>
     </section>
 
-
+    <!-- ── HOBBIES ── -->
     <section id="hobbies" aria-labelledby="h-hobbies">
       <div class="section-inner">
         <p class="section-label reveal">Meine Welt</p>
@@ -977,16 +935,11 @@
 
           <div class="bento-card reveal reveal-d2">
             <svg class="bento-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <!-- Kopf -->
               <circle cx="14.5" cy="3.5" r="1.5"/>
-              <!-- Körper -->
               <path d="M14 5.5 L12 10"/>
-              <!-- Arme ausgestreckt -->
               <path d="M8.5 7.5 L12 8.5 L15.5 6"/>
-              <!-- Beine auf dem Board -->
               <path d="M12 10 L10.5 13.5 L8.5 14.5"/>
               <path d="M12 10 L13 13.5 L11.5 14.5"/>
-              <!-- Board -->
               <path d="M5.5 15.5 Q5 16.5 6.5 17 L17 17 Q19 17 18.5 15.5" />
             </svg>
             <div class="bento-title">Snowboarden</div>
@@ -1258,7 +1211,7 @@
     links.forEach(l => l.addEventListener('click', () => toggleMenu(false)));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
 
-    /* ── Scroll reveal mit früherem Trigger ── */
+    /* ── Scroll reveal ── */
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
@@ -1266,17 +1219,17 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    /* ── Kontakt form with inline validation ── */
+    /* ── Kontakt form ── */
     const form = document.getElementById('kontakt-form');
 
     function validateField(fg, input) {
-      const empty = !input.value.trim();
+      const empty    = !input.value.trim();
       const badEmail = input.type === 'email' && !empty && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
       fg.classList.toggle('has-error', empty || badEmail);
       return !empty && !badEmail;
     }
 
-    ['name','email','nachricht'].forEach(id => {
+    ['name', 'email', 'nachricht'].forEach(id => {
       const input = document.getElementById(id);
       const fg    = document.getElementById('fg-' + id);
       input.addEventListener('blur', () => validateField(fg, input));
@@ -1285,39 +1238,47 @@
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      let valid = true;
-      ['name','email','nachricht'].forEach(id => {
+      let valid        = true;
+      let firstInvalid = null;
+
+      ['name', 'email', 'nachricht'].forEach(id => {
         const input = document.getElementById(id);
         const fg    = document.getElementById('fg-' + id);
-        if (!validateField(fg, input)) {
+        const ok    = validateField(fg, input);
+        if (!ok) {
           valid = false;
-          if (valid === false && !form.querySelector('.has-error input, .has-error textarea')?.matches(':focus')) {
-            input.focus();
-          }
+          if (!firstInvalid) firstInvalid = input;
         }
       });
-      if (!valid) return;
 
-      const btn = form.querySelector('button[type="submit"]');
+      if (!valid) {
+        firstInvalid.focus();
+        return;
+      }
+
+      const btn  = form.querySelector('button[type="submit"]');
       const orig = btn.innerHTML;
-      btn.disabled = true;
+      btn.disabled  = true;
       btn.innerHTML = 'Wird gesendet…';
 
       try {
         const res = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
+          method:  'POST',
+          body:    new FormData(form),
           headers: { 'Accept': 'application/json' }
         });
+
         if (res.ok) {
           form.reset();
           document.getElementById('form-success').style.display = 'block';
           document.getElementById('form-error').style.display   = 'none';
           btn.style.display = 'none';
-        } else { throw new Error(); }
+        } else {
+          throw new Error('Server error ' + res.status);
+        }
       } catch {
         document.getElementById('form-error').style.display = 'block';
-        btn.disabled = false;
+        btn.disabled  = false;
         btn.innerHTML = orig;
       }
     });
@@ -1330,7 +1291,6 @@
     const cards    = Array.from(document.querySelectorAll('.event-card'));
     let current    = 0;
 
-    /* Nur auf Mobile aktiv */
     function isMobile() { return window.innerWidth <= 768; }
 
     cards.forEach((_, i) => {
@@ -1361,7 +1321,6 @@
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
 
-    /* Swipe */
     let startX = 0, startT = 0;
     viewport.addEventListener('touchstart', e => {
       startX = e.touches[0].clientX;
@@ -1375,15 +1334,13 @@
       }
     }, { passive: true });
 
-    /* Scroll-Sync: Dots folgen dem nativen Scroll */
     let scrollTimer;
     viewport.addEventListener('scroll', () => {
       clearTimeout(scrollTimer);
       scrollTimer = setTimeout(() => {
         if (!isMobile()) return;
         const center = viewport.scrollLeft + viewport.offsetWidth / 2;
-        let closest = 0;
-        let minDist = Infinity;
+        let closest = 0, minDist = Infinity;
         cards.forEach((card, i) => {
           const cardCenter = card.offsetLeft + card.offsetWidth / 2;
           const dist = Math.abs(center - cardCenter);
